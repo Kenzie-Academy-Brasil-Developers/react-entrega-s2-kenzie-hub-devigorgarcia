@@ -6,6 +6,7 @@ import RegisterTech from "../../components/RegisterTech";
 import TechCard from "../../components/TechCard";
 import api from "../../services/api";
 import {
+  AnimationContainer,
   Container,
   DashboardContainer,
   Header,
@@ -46,38 +47,40 @@ export default function Dashboard({ isAuth, setIsAuth }) {
       {user === undefined ? (
         <Loading />
       ) : (
-        <DashboardContainer>
-          <Header>
-            <h1>Kenzie Hub</h1>
-            <Button onClick={logout} className="exitBtn">
-              Sair
-            </Button>
-          </Header>
-          <Section>
-            <h2>Olá, {user.name}</h2>
-            <p>{user.course_module}</p>
-          </Section>
-          <Main>
-            <MainHeader>
-              <h3>Tecnologias</h3>
-              <Button
-                className="addBtn"
-                width="2rem"
-                onClick={() => setModal(!modal)}
-              >
-                +
+        <AnimationContainer>
+          <DashboardContainer>
+            <Header>
+              <h1>Kenzie Hub</h1>
+              <Button onClick={logout} className="exitBtn">
+                Sair
               </Button>
-              {modal && <RegisterTech setModal={setModal} />}
-            </MainHeader>
-            <TechList>
-              {techs.length === 0 ? (
-                <h3>Adicione sua tecnologia</h3>
-              ) : (
-                techs?.map((tech) => <TechCard key={tech.id} tech={tech} />)
-              )}
-            </TechList>
-          </Main>
-        </DashboardContainer>
+            </Header>
+            <Section>
+              <h2>Olá, {user.name}</h2>
+              <p>{user.course_module}</p>
+            </Section>
+            <Main>
+              <MainHeader>
+                <h3>Tecnologias</h3>
+                <Button
+                  className="addBtn"
+                  width="2rem"
+                  onClick={() => setModal(!modal)}
+                >
+                  +
+                </Button>
+                {modal && <RegisterTech setModal={setModal} />}
+              </MainHeader>
+              <TechList>
+                {techs.length === 0 ? (
+                  <h3>Adicione sua tecnologia</h3>
+                ) : (
+                  techs?.map((tech) => <TechCard key={tech.id} tech={tech} />)
+                )}
+              </TechList>
+            </Main>
+          </DashboardContainer>
+        </AnimationContainer>
       )}
     </Container>
   );

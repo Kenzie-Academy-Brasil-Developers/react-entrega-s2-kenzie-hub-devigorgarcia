@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const Container = styled.div`
   width: 100vw;
@@ -10,7 +10,8 @@ export const Container = styled.div`
 `;
 
 export const DashboardContainer = styled.div`
-  margin: 26px 16px;
+  margin: 26px 0;
+  width: 100vw;
   
   @media (min-width: 1024px) {
     width: 100%;
@@ -23,7 +24,8 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  padding: 0 1rem 2rem;
+  
 
   h1 {
     color: var(--orange);
@@ -44,8 +46,10 @@ export const Header = styled.header`
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
-  margin: 2.5em 0;
+  padding: 2.5em 1rem;
   gap: 0.8rem;
+  border-top: 1px solid #212529;
+  border-bottom: 1px solid #212529;
 `;
 
 export const Main = styled.main`
@@ -57,7 +61,7 @@ export const MainHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 2rem 0;
+  margin: 2.5em 1rem 0;
 
   .addBtn {
     font-size: 2rem;
@@ -68,8 +72,30 @@ export const TechList = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  max-height: 60vh;
+  max-height: 53vh;
+  
   padding: 1.5rem 0.5rem;
   background-color: var(--bg-form);
   gap: 1rem;
+  margin: 2.5em 1rem 0;
+  
 `;
+
+const ApperFromRight = keyframes`
+from {
+  opacity: 0;
+  transform: translateY(80px);
+}
+to {
+  opacity: 1;
+  transform: translateY(0);
+}
+`
+
+export const AnimationContainer = styled.div`
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: ${ApperFromRight} 3s;
+`

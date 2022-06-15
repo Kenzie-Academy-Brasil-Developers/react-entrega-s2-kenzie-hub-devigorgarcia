@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const Container = styled.div`
   background-color: black;
@@ -65,4 +65,21 @@ width: 100%;
 align-items: center;
 justify-content: center;
 gap: 1rem;
+`
+const ApperFromRight = keyframes`
+from {
+  opacity: 0;
+  transform: translateX(100px);
+}
+to {
+  opacity: 1;
+  transform: translateX(0px);
+}
+`
+export const AnimationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: ${ApperFromRight} 2s;
 `

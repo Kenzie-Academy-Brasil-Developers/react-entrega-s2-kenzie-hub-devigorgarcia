@@ -7,6 +7,7 @@ import InputDash from "../InputDash";
 import SelectDash from "../SelectDash";
 
 import {
+  AnimationContainer,
   Container,
   ContainerContent,
   ContentForm,
@@ -42,27 +43,29 @@ export default function RegisterTech({ setModal }) {
   }
   return (
     <Container>
-      <ModalContainer>
-        <HeaderModal>
-          <h2>Cadastrar Tecnologia</h2>
-          <button className="exitBtn" onClick={() => setModal(false)}>
-            x
-          </button>
-        </HeaderModal>
-        <ContainerContent>
-          <ContentForm onSubmit={handleSubmit(onSubmitFunction)}>
-            <InputDash name="title" label="Nome" register={register} />
-            <SelectDash
-              name="status"
-              register={register}
-              label="Selecionar status"
-            />
-            <Button type="submit" className="registerBtn">
-              Cadastrar Técnologia
-            </Button>
-          </ContentForm>
-        </ContainerContent>
-      </ModalContainer>
+      <AnimationContainer>
+        <ModalContainer>
+          <HeaderModal>
+            <h2>Cadastrar Tecnologia</h2>
+            <button className="exitBtn" onClick={() => setModal(false)}>
+              x
+            </button>
+          </HeaderModal>
+          <ContainerContent>
+            <ContentForm onSubmit={handleSubmit(onSubmitFunction)}>
+              <InputDash name="title" label="Nome" register={register} />
+              <SelectDash
+                name="status"
+                register={register}
+                label="Selecionar status"
+              />
+              <Button type="submit" className="registerBtn">
+                Cadastrar Técnologia
+              </Button>
+            </ContentForm>
+          </ContainerContent>
+        </ModalContainer>
+      </AnimationContainer>
     </Container>
   );
 }
