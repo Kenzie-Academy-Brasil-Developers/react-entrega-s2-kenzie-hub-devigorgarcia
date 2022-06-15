@@ -14,7 +14,7 @@ import {
   ModalContainer,
 } from "./style";
 
-export default function RegisterTech({ setModal, setTechs, techs }) {
+export default function RegisterTech({ setModal }) {
   const [token] = useState(localStorage.getItem("@KenzieHub:token"));
   const { register, handleSubmit } = useForm();
 
@@ -34,9 +34,8 @@ export default function RegisterTech({ setModal, setTechs, techs }) {
           },
         }
       )
-      .then((response) => {
-        toastSucess("Técnologia Adicionada")
-        setTechs([...techs, response.data]);
+      .then((_) => {
+        toastSucess("Técnologia Adicionada");
         setModal(false);
       })
       .catch((err) => console.log(err));

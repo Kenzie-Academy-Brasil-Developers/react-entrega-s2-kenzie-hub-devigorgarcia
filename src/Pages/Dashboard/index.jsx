@@ -35,12 +35,12 @@ export default function Dashboard({ isAuth, setIsAuth }) {
       setUser(response.data);
       setTechs(response.data.techs);
     });
-  }, [userId]);
+  }, [techs]);
 
   if (!isAuth) {
     return <Redirect to={"/"} />;
   }
-  
+
   return (
     <Container>
       {user === undefined ? (
@@ -60,17 +60,21 @@ export default function Dashboard({ isAuth, setIsAuth }) {
           <Main>
             <MainHeader>
               <h3>Tecnologias</h3>
-              <Button className="addBtn" width="2rem" onClick={() => setModal(!modal)}>
+              <Button
+                className="addBtn"
+                width="2rem"
+                onClick={() => setModal(!modal)}
+              >
                 +
               </Button>
-              {modal && (
-                <RegisterTech setModal={setModal} setTechs={setTechs} techs={techs}/>
-              )}
+              {modal && <RegisterTech setModal={setModal} />}
             </MainHeader>
             <TechList>
-              {techs?.map((tech) => (
-                <TechCard key={tech.id} tech={tech} />
-              ))}
+              {techs.length === 0 ? (
+                <h3>Adicione sua tecnologia</h3>
+              ) : (
+                techs?.map((tech) => <TechCard key={tech.id} tech={tech} />)
+              )}
             </TechList>
           </Main>
         </DashboardContainer>

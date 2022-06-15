@@ -12,6 +12,7 @@ import {
 } from "./style";
 import Button from "../Button/button";
 import api from "../../services/api";
+import { toastSucess } from "../../utils/toast";
 
 export default function EditTech({ setModal, title, status, id }) {
   const { register, handleSubmit } = useForm();
@@ -30,17 +31,25 @@ export default function EditTech({ setModal, title, status, id }) {
           },
         }
       )
-      .then((response) => {
-        console.log(response);
+      .then((_) => {
+        toastSucess("Tecnologia Atualizada com Sucesso!");
+        setModal(false);
       });
   }
 
-  function deleteTech() {
-    console.log(id)
-    api.delete(`users/techs/${id}`).then((response) => {
-      console.log(response);
-      setModal(false)
-    });
+  function deleteTech(e) {
+    e.preventDefault();
+    api
+      .delete(`users/techs/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((_) => {
+        toastSucess("Tecnologia Apagada");
+        setModal(false);
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -75,7 +84,7 @@ export default function EditTech({ setModal, title, status, id }) {
                 width="50%"
                 type="submit"
                 className="registerBtn"
-                onClick={deleteTech}
+                onClick={(e) => deleteTech(e)}
               >
                 Excluir
               </Button>
